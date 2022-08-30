@@ -30,10 +30,13 @@ pg.init()
 
 pantalla_principal = pg.display.set_mode((800, 600))
 pg.display.set_caption("Cuadraicos rebotando")
+clock = pg.time.Clock()
+FPS = 50
 cuadrados = []
-for i in range (15):
-    cuadrao = Cuadrao(400, 300, color = (random.randint(0,255), random.randint(0,255),random.randint (0, 255)))
-    cuadrao.velocidad(random.randint(0,8), random.randint(0,8))
+for i in range (random.randint(0, 30)):
+    lado = random.randint (5 , 55)
+    cuadrao = Cuadrao(400, 300, w = lado, h = lado, color = (random.randint(0,255), random.randint(0,255),random.randint (0, 255)))
+    cuadrao.velocidad(random.randint(-4,5), random.randint(-4,5))
     cuadrados.append(cuadrao)
     i += 1 
 #cuadrao2 = Cuadrao(300, 300, 35, 35, color = (0, 255, 0))
@@ -52,10 +55,14 @@ while not game_over:
     
     #cuadrao.mover(800, 600)
     #cuadrao2.mover(800, 600)
-    for a in range(len(cuadrados)):
-        cuadrados[a].mover(800, 600)
-        pg.draw.rect(pantalla_principal, cuadrados[a].color, (cuadrados[a].x, cuadrados[a].y, cuadrados[a].w, cuadrados[a].h))      #para pintar los cuadraos en la pantalla
+    #for a in range(len(cuadrados)):
+    #    cuadrados[a].mover(800, 600)
+    #    pg.draw.rect(pantalla_principal, cuadrados[a].color, (cuadrados[a].x, cuadrados[a].y, cuadrados[a].w, cuadrados[a].h))      #para pintar los cuadraos en la pantalla
     #pg.draw.rect(pantalla_principal, cuadrao2.color, (cuadrao2.x, cuadrao2.y, cuadrao2.w, cuadrao2.h))
+
+    for cuadrao in cuadrados:
+        cuadrao.mover(800, 600)
+        pg.draw.rect(pantalla_principal, cuadrao.color, (cuadrao.x, cuadrao.y, cuadrao.w, cuadrao.h))      #para pintar los cuadraos en la pantalla
 
 
     pg.display.flip()                                   #para mandarla al monitor
